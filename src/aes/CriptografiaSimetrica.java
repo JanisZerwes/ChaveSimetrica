@@ -15,11 +15,6 @@ public class CriptografiaSimetrica {
 	private static byte[] mensagemDescriptada;
 	private static Scanner sc = new Scanner(System.in);
 
-	public CriptografiaSimetrica(String mensagem, String chaveSimetrica) {
-		this.mensagem = mensagem;
-		this.chaveSimetrica = chaveSimetrica;
-	}
-
 	public static void main(String args[]) {
 		// em aes só são suportadas chaves com esses três tamanhos, 32, 24 ou 16
 		// caracteres.
@@ -53,6 +48,11 @@ public class CriptografiaSimetrica {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 	}
 
+	public CriptografiaSimetrica(String key, String mensagem) {
+		this.Key = Key;
+		this.mensagem = mensagem;
+	}
 }
