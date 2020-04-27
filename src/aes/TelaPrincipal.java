@@ -18,7 +18,7 @@ public class TelaPrincipal extends JFrame {
 	private JTextField txtChave;
 	private JTextField txtMensagem;
 	private JTextField txtMensagemEncriptada;
-	private JTextField MensagemDescriptada;
+	private JTextField txtMensagemDescriptada;
 
 	/**
 	 * Launch the application.
@@ -78,10 +78,10 @@ public class TelaPrincipal extends JFrame {
 		lblMensgaemDescriptada.setBounds(12, 271, 512, 16);
 		contentPane.add(lblMensgaemDescriptada);
 
-		MensagemDescriptada = new JTextField();
-		MensagemDescriptada.setBounds(12, 317, 512, 22);
-		contentPane.add(MensagemDescriptada);
-		MensagemDescriptada.setColumns(10);
+		txtMensagemDescriptada = new JTextField();
+		txtMensagemDescriptada.setBounds(12, 317, 512, 22);
+		contentPane.add(txtMensagemDescriptada);
+		txtMensagemDescriptada.setColumns(10);
 
 		JButton btnEncriptar = new JButton("Encriptar");
 		btnEncriptar.addActionListener(new ActionListener() {
@@ -90,7 +90,8 @@ public class TelaPrincipal extends JFrame {
 				String key = txtChave.getText();
 				String mensagem = txtMensagem.getText();
 				CriptografiaSimetrica crip = new CriptografiaSimetrica(key, mensagem);
-				txtMensagem.setText(Cipher.DECRYPT_MODE());
+				txtMensagem.setText(Cipher.ENCRYPT_MODE());
+				txtMensagemDescriptada.setText(Cipher.DECRYPT_MODE());
 
 			}
 		});
