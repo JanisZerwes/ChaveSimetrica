@@ -86,6 +86,9 @@ public class TelaPrincipal extends JFrame {
 		JButton btnEncriptar = new JButton("Encriptar");
 		btnEncriptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+
+				String key = txtChave.getText();
+				String mensagem = txtMensagem.getText();
 				CriptografiaSimetrica crip = new CriptografiaSimetrica(key, mensagem);
 				txtMensagem.setText(Cipher.DECRYPT_MODE());
 
