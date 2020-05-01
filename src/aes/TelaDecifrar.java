@@ -77,7 +77,6 @@ public class TelaDecifrar {
 				CriptografiaSimetrica crip = new CriptografiaSimetrica(mensagem, key);
 				String stringCripto = new String(crip.cifrar());
 				txtMensagemPronta.setText(descrip.decifrar(txtMensagemDescript.getText().getBytes()));
-				txtMensagemPronta.setText(descrip.decifrar(txtMensagemDescript.getText().getBytes()));
 
 			}
 		});
