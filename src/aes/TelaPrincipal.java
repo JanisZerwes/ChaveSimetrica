@@ -1,10 +1,10 @@
 package aes;
 
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.crypto.Cipher;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -17,8 +17,6 @@ public class TelaPrincipal extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtChave;
 	private JTextField txtMensagem;
-	private JTextField txtMensagemEncriptada;
-	private JTextField txtMensagemDescriptada;
 
 	/**
 	 * Launch the application.
@@ -40,8 +38,9 @@ public class TelaPrincipal extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaPrincipal() {
+		setTitle("Encriptar");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 554, 451);
+		setBounds(100, 100, 544, 299);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -52,6 +51,7 @@ public class TelaPrincipal extends JFrame {
 		contentPane.add(lblChaveCom);
 
 		txtChave = new JTextField();
+		txtChave.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		txtChave.setBounds(12, 56, 512, 22);
 		contentPane.add(txtChave);
 		txtChave.setColumns(10);
@@ -61,27 +61,10 @@ public class TelaPrincipal extends JFrame {
 		contentPane.add(lblMensagem);
 
 		txtMensagem = new JTextField();
+		txtMensagem.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		txtMensagem.setBounds(12, 133, 512, 22);
 		contentPane.add(txtMensagem);
 		txtMensagem.setColumns(10);
-
-		JLabel lblMensagemEncriptada = new JLabel("Mensagem Encriptada:");
-		lblMensagemEncriptada.setBounds(12, 179, 512, 16);
-		contentPane.add(lblMensagemEncriptada);
-
-		txtMensagemEncriptada = new JTextField();
-		txtMensagemEncriptada.setBounds(12, 220, 512, 22);
-		contentPane.add(txtMensagemEncriptada);
-		txtMensagemEncriptada.setColumns(10);
-
-		JLabel lblMensgaemDescriptada = new JLabel("Mensgaem Descriptada:");
-		lblMensgaemDescriptada.setBounds(12, 271, 512, 16);
-		contentPane.add(lblMensgaemDescriptada);
-
-		txtMensagemDescriptada = new JTextField();
-		txtMensagemDescriptada.setBounds(12, 317, 512, 22);
-		contentPane.add(txtMensagemDescriptada);
-		txtMensagemDescriptada.setColumns(10);
 
 		JButton btnEncriptar = new JButton("Encriptar");
 		btnEncriptar.addActionListener(new ActionListener() {
@@ -89,18 +72,22 @@ public class TelaPrincipal extends JFrame {
 
 				String key = txtChave.getText();
 				String mensagem = txtMensagem.getText();
-				CriptografiaSimetrica crip = new CriptografiaSimetrica(key, mensagem);
-				txtMensagem.setText(Cipher.ENCRYPT_MODE());
-				txtMensagemDescriptada.setText(Cipher.DECRYPT_MODE());
+				CriptografiaSimetrica crip = new CriptografiaSimetrica(mensagem, key);
+				txtMensagem.setText(new String(crip.cifrar()));
 
 			}
 		});
-		btnEncriptar.setBounds(232, 366, 97, 25);
+		btnEncriptar.setBounds(286, 196, 97, 25);
 		contentPane.add(btnEncriptar);
 
-		JButton btnDescriptar = new JButton("Descriptar");
-		btnDescriptar.setBounds(378, 366, 97, 25);
-		contentPane.add(btnDescriptar);
+		JButton btnDecifrar = new JButton("Decifrar");
+		btnDecifrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				TelaDecifrar decifrar = new TelaDecifrar();
+				decifrar.NovaTela();
+			}
+		});
+		btnDecifrar.setBounds(398, 196, 97, 25);
+		contentPane.add(btnDecifrar);
 	}
-
 }

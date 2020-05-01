@@ -11,6 +11,8 @@ public class MainSimetrica {
 		Scanner sc = new Scanner(System.in);
 		// em aes só são suportadas chaves com esses três tamanhos, 32, 24 ou 16
 		// caracteres.
+
+		// AQUI esta a logica para gerar a SecretKey
 		System.out.println("32 caracteres = chave com 256 bits" + "\n 24 caracteres = chave com 192 bits"
 				+ "\n 16 caracteres = chave com 128 bits" + "\n informe a chave");
 		String chaveSimetrica = sc.nextLine();
@@ -41,19 +43,18 @@ public class MainSimetrica {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
-	public String Encriptar() {
-		Cipher cipher = Cipher.getInstance("AES");
-		cipher.init(Cipher.ENCRYPT_MODE, this.Key);
-		String mensagemEncriptada = cipher.doFinal(this.mensagem.getBytes());
-		return mensagemEncriptada;
-	}
-
-	public void CriptografiaSimetrica(String key, String mensagem) {
-		this.Key = new SecretKeySpec(key.getBytes(), "AES");
-		this.mensagem = mensagem;
-	}
+//	public String Encriptar() {
+//		Cipher cipher = Cipher.getInstance("AES");
+//		cipher.init(Cipher.ENCRYPT_MODE, this.Key);
+//		String mensagemEncriptada = cipher.doFinal(this.mensagem.getBytes());
+//		return mensagemEncriptada;
+//	}
+//
+//	public void CriptografiaSimetrica(String key, String mensagem) {
+//		this.Key = new SecretKeySpec(key.getBytes(), "AES");
+	// this.mensagem = mensagem;
+//	}
 
 }
